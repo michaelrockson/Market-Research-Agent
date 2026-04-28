@@ -4,7 +4,7 @@ from utils.logger import logger
 
 def init_db():
     try:
-        Base.metadata.create_all(bind=database_engine)
+        Base.metadata.create_all(bind = database_engine)
         logger.info(
             "Database initialized successfully (new tables created if missing).")
     except Exception as e:

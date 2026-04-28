@@ -21,6 +21,7 @@ class EgressService:
     Service class responsible for generating reports, creating Notion pages, formatting emails and sending emails.
     """
 
+
     def __init__(self):
         self.queried_brief = None
         self.formatted_email = None
@@ -29,7 +30,7 @@ class EgressService:
         self.email_address = settings.EMAIL_ADDRESS
         self.email_password = settings.EMAIL_APP_PASSWORD
         self.recipient_address = settings.RECIPIENT_ADDRESS
-        self.notion_client = Client(auth=self.notion_key)
+        self.notion_client = Client(auth = self.notion_key)
         self.notion_blocks = []
         self.session = get_session()
         self.brief_repo = BriefRepository(self.session)
@@ -40,9 +41,10 @@ class EgressService:
             raise RuntimeError(f"Template directory not found: {TEMPLATE_DIR}")
 
         self.jinja_env = Environment(
-            loader=FileSystemLoader(str(TEMPLATE_DIR)),
-            autoescape=select_autoescape(["html"])
+            loader = FileSystemLoader(str(TEMPLATE_DIR)),
+            autoescape = select_autoescape(["html"])
         )
+
 
     def query_brief(self):
         """
@@ -67,8 +69,10 @@ class EgressService:
 
         except Exception as e:
             logger.error(
-                f"Error querying briefs from the database: {e}", exc_info=True)
+                f"Error querying briefs from the database: {e}",
+                exc_info = True)
             return None
+
 
     def create_notion_page(self):
         """
@@ -111,13 +115,13 @@ class EgressService:
             ]
 
             response = self.notion_client.pages.create(
-                parent={"page_id": self.notion_parent_page},
-                properties={
+                parent = {"page_id": self.notion_parent_page},
+                properties = {
                     "title": [
                         {"type": "text", "text": {"content": self.title}}
                     ]
                 },
-                children=children_blocks
+                children = children_blocks
             )
 
             if response.get("request_id"):
@@ -129,14 +133,16 @@ class EgressService:
         except APIResponseError as error:
             if error.code == APIErrorCode.ObjectNotFound:
                 logger.error(
-                    "The specified parent page was not found.", exc_info=True)
+                    "The specified parent page was not found.",
+                    exc_info = True)
             else:
-                logger.error(f"Notion API error: {error}", exc_info=True)
+                logger.error(f"Notion API error: {error}", exc_info = True)
         except Exception as e:
             logger.error(
-                f"Unexpected error creating Notion page: {e}", exc_info=True)
+                f"Unexpected error creating Notion page: {e}", exc_info = True)
 
-    def send_email(self, subject="Reddit Problem Report!"):
+
+    def send_email(self, subject = "Reddit Problem Report!"):
         """
         Format and send the brief as an HTML email to the configured recipient.
         Args:
@@ -151,11 +157,11 @@ class EgressService:
         brief_id = self.queried_brief.get("id")
 
         self.formatted_email = format_email(
-            content=content,
-            jinja_env=self.jinja_env,
-            title=self.title,
-            footer_text=self.footer_text,
-            brief_id=brief_id,
+            content = content,
+            jinja_env = self.jinja_env,
+            title = self.title,
+            footer_text = self.footer_text,
+            brief_id = brief_id,
         )
 
         if not self.formatted_email:
@@ -168,7 +174,7 @@ class EgressService:
             msg["To"] = self.recipient_address
             msg["Subject"] = subject
             msg.set_content("This email contains an HTML report.")
-            msg.add_alternative(self.formatted_email, subtype="html")
+            msg.add_alternative(self.formatted_email, subtype = "html")
 
             logger.info(f"Sending email to {self.recipient_address}")
 
@@ -180,8 +186,8 @@ class EgressService:
             logger.info("Email successfully sent.")
 
         except SMTPAuthenticationError:
-            logger.error("SMTP authentication failed.", exc_info=True)
+            logger.error("SMTP authentication failed.", exc_info = True)
         except SMTPConnectError:
-            logger.error("SMTP connection failed.", exc_info=True)
+            logger.error("SMTP connection failed.", exc_info = True)
         except Exception as e:
-            logger.error(f"Email send failed: {e}", exc_info=True)
+            logger.error(f"Email send failed: {e}", exc_info = True)

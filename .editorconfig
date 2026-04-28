@@ -12,6 +12,8 @@ indent_size = 4
 indent_style = space
 indent_size = 4
 max_line_length = 79
+ij_python_blank_lines_around_top_level_classes_functions = 2
+ij_python_blank_lines_around_method = 2
 
 [*.{js,ts,jsx,tsx,html,css,json}]
 indent_style = space

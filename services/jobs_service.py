@@ -17,10 +17,12 @@ class JobService:
     - Cleans up curated records from the database.
     """
 
+
     def __init__(self):
         self.egress_setting = settings.CHOICE_THREE
         self.session = get_session()
         self.post_repo = PostRepository(self.session)
+
 
     def safe_run(self, function):
         def wrapper(*args, **kwargs):
@@ -42,6 +44,7 @@ class JobService:
 
         return wrapper
 
+
     def run_all_pipelines(self):
         """
         Runs the pipelines synchronously in the correct order:
@@ -60,6 +63,7 @@ class JobService:
         self.safe_run(egress.run)(self.egress_setting)
 
         logger.info("Full pipeline sequence finished")
+
 
     def cleanup_curated_data(self):
         """
@@ -83,6 +87,6 @@ class JobService:
         except Exception as e:
             self.session.rollback()
             logger.error(f"Error during curated data cleanup: {e}",
-                         exc_info=True)
+                         exc_info = True)
         finally:
             self.session.close()

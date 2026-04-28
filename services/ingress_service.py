@@ -13,6 +13,7 @@ class IngressService:
     from specified subreddits using the Reddit API client.
     """
 
+
     def __init__(self):
         self.reddit = get_reddit_client()
         self.subreddits = settings.DEFAULT_SUBREDDITS
@@ -24,6 +25,7 @@ class IngressService:
         self.posts = []
         self.submission_ids = []
         self.comments = []
+
 
     def fetch_reddit_posts(self) -> List[Dict[str, Any]]:
         """
@@ -53,11 +55,12 @@ class IngressService:
             except Exception as e:
                 logger.error(
                     f"Error fetching posts from r/{subreddit_name}: {e}",
-                    exc_info=True)
+                    exc_info = True)
 
         self.posts = posts
         logger.info(f"Collected {len(posts)} posts")
         return posts
+
 
     def fetch_post_ids(self) -> List[str]:
         """
@@ -79,6 +82,7 @@ class IngressService:
         self.submission_ids = submission_ids
         logger.info(f"Extracted {len(submission_ids)} submission IDs.")
         return submission_ids
+
 
     def fetch_reddit_comments(self) -> List[Dict[str, Any]]:
         """
@@ -104,7 +108,7 @@ class IngressService:
             except Exception as e:
                 logger.error(
                     f"Error fetching comments for submission {submission_id}: {e}",
-                    exc_info=True)
+                    exc_info = True)
 
         self.comments = comments_collected
         logger.info(f"Collected {len(comments_collected)} comments")

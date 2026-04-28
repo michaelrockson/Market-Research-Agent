@@ -10,8 +10,10 @@ class SentimentRepository:
     Repository for handling Sentiment database operations.
     """
 
+
     def __init__(self, session: Session):
         self.session = session
+
 
     def create_sentiments(self, sentiments_data: List[Dict]):
         """
@@ -20,10 +22,11 @@ class SentimentRepository:
         """
         for data in sentiments_data:
             sentiment = Sentiment(
-                post_id=data.get("post_id"),
-                sentiment_results=data.get("sentiment_results")
+                post_id = data.get("post_id"),
+                sentiment_results = data.get("sentiment_results")
             )
             self.session.add(sentiment)
+
 
     def mark_as_curated(self, submission_ids: List[str]):
         """
@@ -31,4 +34,4 @@ class SentimentRepository:
         """
         self.session.query(Sentiment).filter(
             Sentiment.post_id.in_(submission_ids)
-        ).update({"is_curated": True}, synchronize_session=False)
+        ).update({"is_curated": True}, synchronize_session = False)

@@ -9,10 +9,10 @@ from settings import settings
 
 DATABASE_URL = settings.DATABASE_URL
 
-database_engine = create_engine(DATABASE_URL, echo=False, future=True)
+database_engine = create_engine(DATABASE_URL, echo = False, future = True)
 
-SessionLocal = sessionmaker(bind=database_engine, autocommit=False,
-                            autoflush=False)
+SessionLocal = sessionmaker(bind = database_engine, autocommit = False,
+                            autoflush = False)
 
 Base = declarative_base()
 

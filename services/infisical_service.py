@@ -14,9 +14,10 @@ class InfisicalSecretsService:
     from Infisical a cloud-based secret's manager.
     """
 
+
     def __init__(self):
         self.client = InfisicalSDKClient(
-            host="https://app.infisical.com"
+            host = "https://app.infisical.com"
         )
         self.secrets = [
             "REDDIT_CLIENT_ID",
@@ -31,6 +32,7 @@ class InfisicalSecretsService:
             "RECIPIENT_ADDRESS"
         ]
 
+
     def authenticate_infisical_client(self):
         client_id = os.getenv("INFISICAL_CLIENT_ID")
         client_secret = os.getenv("INFISICAL_CLIENT_SECRET")
@@ -43,8 +45,8 @@ class InfisicalSecretsService:
         try:
             logger.info("Authenticating infisical client...")
             response = self.client.auth.universal_auth.login(
-                client_id=client_id,
-                client_secret=client_secret
+                client_id = client_id,
+                client_secret = client_secret
             )
             logger.info("Infisical client authenticated successfully.")
             return response
@@ -52,6 +54,7 @@ class InfisicalSecretsService:
             logger.error(
                 f"Error authenticating Infisical Client: {error}. Falling back to local environment.")
             return None
+
 
     def load_infisical_secrets(self):
         project_id = os.getenv("INFISICAL_PROJECT_ID")
@@ -66,9 +69,9 @@ class InfisicalSecretsService:
         try:
             logger.info("Fetching Secrets From Infisical...")
             response = self.client.secrets.list_secrets(
-                project_id=project_id,
-                environment_slug="dev",
-                secret_path="/"
+                project_id = project_id,
+                environment_slug = "dev",
+                secret_path = "/"
             )
 
             missing_key_count = 0

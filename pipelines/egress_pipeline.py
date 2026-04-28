@@ -9,11 +9,13 @@ class EgressPipeline:
     Pipeline responsible for co-ordinating the delivery of processed reports.
     """
 
+
     def __init__(self):
         self.service = EgressService()
         self.notion_only = settings.CHOICE_ONE
         self.email_only = settings.CHOICE_TWO
         self.all_channels = settings.CHOICE_THREE
+
 
     def run(self, choice):
         """
@@ -24,16 +26,16 @@ class EgressPipeline:
             logger.info("Querying latest processed brief...")
             self.service.query_brief()
             send_by_channel(
-                service=self.service,
-                choice=choice,
-                notion_only=self.notion_only,
-                email_only=self.email_only,
-                all_channels=self.all_channels,
+                service = self.service,
+                choice = choice,
+                notion_only = self.notion_only,
+                email_only = self.email_only,
+                all_channels = self.all_channels,
             )
             logger.info("Egress pipeline complete")
             return True
 
         except Exception as e:
             logger.error(f"Error executing Egress pipeline: {e}",
-                         exc_info=True)
+                         exc_info = True)
             return {"error": str(e)}

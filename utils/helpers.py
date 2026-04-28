@@ -83,8 +83,8 @@ def get_comments_from_submission(reddit, submission_id: str,
     """
     comments_collected = []
 
-    submission = reddit.submission(id=submission_id)
-    submission.comments.replace_more(limit=0)
+    submission = reddit.submission(id = submission_id)
+    submission.comments.replace_more(limit = 0)
 
     comments = submission.comments.list()
     if comment_limit:
@@ -132,7 +132,7 @@ def get_posts_from_subreddit(
     posts = []
 
     subreddit_posts = list(
-        reddit.subreddit(subreddit_name).hot(limit=post_limit))
+        reddit.subreddit(subreddit_name).hot(limit = post_limit))
     logger.info(
         f"Retrieved {len(subreddit_posts)} posts from r/{subreddit_name}.")
 
@@ -224,7 +224,7 @@ def chunk_text(content: str, max_block_size: int = 2000) -> List[str]:
             logger.debug(f"Block {idx + 1} length: {len(block)}")
 
     except Exception as e:
-        logger.error(f"Error while chunking text: {e}", exc_info=True)
+        logger.error(f"Error while chunking text: {e}", exc_info = True)
 
     return blocks
 
@@ -258,7 +258,7 @@ def create_notion_blocks(text_blocks: List[str], safe_max: int = 1950) -> List[
         logger.info(f"Created {len(notion_blocks)} Notion blocks.")
 
     except Exception as e:
-        logger.error(f"Error creating Notion blocks: {e}", exc_info=True)
+        logger.error(f"Error creating Notion blocks: {e}", exc_info = True)
 
     return notion_blocks
 
@@ -285,15 +285,15 @@ def format_email(
         content_html = markdown2.markdown(content)
         template = jinja_env.get_template("card.html")
         rendered = template.render(
-            title=title,
-            content_html=content_html,
-            footer_text=footer_text
+            title = title,
+            content_html = content_html,
+            footer_text = footer_text
         )
         logger.info(f"Email rendered for brief ID {brief_id}")
         return rendered
 
     except Exception as e:
-        logger.error(f"Email formatting failed: {e}", exc_info=True)
+        logger.error(f"Email formatting failed: {e}", exc_info = True)
         return ""
 
 

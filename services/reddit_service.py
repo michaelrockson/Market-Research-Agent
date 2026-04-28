@@ -13,8 +13,10 @@ class RedditService:
     Service for orchestrating Reddit data scraping and storage pipelines.
     """
 
+
     def __init__(self):
         self.scraper = IngressService()
+
 
     def run_reddit_scraper(self) -> Dict[str, Any]:
         """
@@ -53,6 +55,7 @@ class RedditService:
             "comments": comments,
         }
 
+
     def run_reddit_storage(self, reddit_data: Dict):
         """
         Store Reddit posts and comments using the respective repositories.
@@ -74,7 +77,7 @@ class RedditService:
 
         except Exception as e:
             session.rollback()
-            logger.error(f"Error storing posts: {e}", exc_info=True)
+            logger.error(f"Error storing posts: {e}", exc_info = True)
             return
 
         try:
@@ -85,7 +88,7 @@ class RedditService:
 
         except Exception as e:
             session.rollback()
-            logger.error(f"Error storing comments: {e}", exc_info=True)
+            logger.error(f"Error storing comments: {e}", exc_info = True)
 
         finally:
             session.close()

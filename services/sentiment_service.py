@@ -16,6 +16,7 @@ class SentimentService:
     Service for querying posts with comments, analyzing sentiment, summarizing sentiment and storing results.
     """
 
+
     def __init__(self):
         self.ensure_nltk_resources()
         self.session = get_session()
@@ -25,6 +26,7 @@ class SentimentService:
         self.query_results: List[Dict] = []
         self.post_sentiment_scores: List[List[Dict]] = []
         self.post_sentiment_summaries: List[List[Dict]] = []
+
 
     @staticmethod
     def ensure_nltk_resources() -> None:
@@ -36,6 +38,7 @@ class SentimentService:
         except LookupError:
             logger.info("Downloading VADER lexicon...")
             nltk.download("vader_lexicon")
+
 
     def query_posts_with_comments(self) -> List[Dict]:
         """
@@ -66,12 +69,13 @@ class SentimentService:
 
         except Exception as e:
             logger.error(
-                f"Error querying posts with comments: {e}", exc_info=True)
+                f"Error querying posts with comments: {e}", exc_info = True)
             self.query_results = []
             return []
 
         finally:
             self.session.close()
+
 
     def analyze_post_sentiment(self):
         """
@@ -112,12 +116,13 @@ class SentimentService:
 
         except Exception as e:
             logger.error(
-                f"Error during sentiment analysis: {e}", exc_info=True)
+                f"Error during sentiment analysis: {e}", exc_info = True)
             return []
 
         self.post_sentiment_scores = post_sentiment_scores
         logger.info("Sentiment analysis complete.")
         return post_sentiment_scores
+
 
     def summarize_post_sentiment(self) -> List[Dict]:
         """
@@ -175,13 +180,14 @@ class SentimentService:
 
         except Exception as e:
             logger.error(
-                f"Error summarizing post sentiment: {e}", exc_info=True)
+                f"Error summarizing post sentiment: {e}", exc_info = True)
             summaries = None
 
         logger.info("Sentiment Summarization Complete.")
 
         self.post_sentiment_summaries = summaries
         return summaries
+
 
     def store_sentiment_results(self):
         """
@@ -217,7 +223,8 @@ class SentimentService:
             logger.info("Sentiment storage complete")
 
         except Exception as e:
-            logger.error(f"Error storing post sentiment(s) {e}", exc_info=True)
+            logger.error(f"Error storing post sentiment(s) {e}",
+                         exc_info = True)
             self.session.rollback()
         finally:
             self.session.close()

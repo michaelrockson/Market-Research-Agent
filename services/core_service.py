@@ -17,6 +17,7 @@ class CoreService:
     executing the curator agent and storing agent responses.
     """
 
+
     def __init__(self):
         self.session = get_session()
         self.post_repo = PostRepository(self.session)
@@ -25,6 +26,7 @@ class CoreService:
         self.agent = initialize_gemini()
         self.post_with_sentiments = []
         self.curator_agent_response = None
+
 
     def query_posts_with_sentiments(self) -> List[Dict]:
         """
@@ -38,7 +40,7 @@ class CoreService:
 
         try:
             posts_with_sentiments = self.post_repo.get_posts_with_sentiments(
-                limit=10)
+                limit = 10)
 
             for post, sentiment in posts_with_sentiments:
                 post_with_sentiments = {
@@ -58,8 +60,9 @@ class CoreService:
         except Exception as e:
             logger.error(
                 f"Error querying posts with sentiments from the database!:{e}",
-                exc_info=True)
+                exc_info = True)
             raise SystemExit
+
 
     def execute_curator_agent(self):
         """
@@ -70,10 +73,10 @@ class CoreService:
         try:
             logger.info("Executing Curator Agent")
             response = self.agent.models.generate_content(
-                model=settings.AGENT_MODEL,
-                contents=settings.SCOUT_OBJECTIVE,
-                config=provide_agent_tools(
-                    tools=[self.query_posts_with_sentiments])
+                model = settings.AGENT_MODEL,
+                contents = settings.SCOUT_OBJECTIVE,
+                config = provide_agent_tools(
+                    tools = [self.query_posts_with_sentiments])
             )
 
             logger.info("Curator Agent complete")
@@ -99,6 +102,7 @@ class CoreService:
                 f"Unexpected error while running Market Scout Agent: {e}")
             raise SystemExit("Agent terminated due to an error.")
 
+
     def store_curator_response(self):
         """
         Store the curator agent's response in the ProcessedBriefs table in the database.
@@ -109,7 +113,7 @@ class CoreService:
                 self.execute_curator_agent()
             except Exception as e:
                 logger.error(
-                    f"Failed to run curator agent: {e}", exc_info=True)
+                    f"Failed to run curator agent: {e}", exc_info = True)
 
         try:
             if self.curator_agent_response is not None:
@@ -140,7 +144,7 @@ class CoreService:
             self.session.rollback()
             logger.error(
                 f"Failed to store curator response and update curation status: {e}",
-                exc_info=True)
+                exc_info = True)
 
         finally:
             self.session.close()

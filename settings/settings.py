@@ -57,23 +57,63 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 # REDDIT DATA INGRESS SETTINGS
 # =====================================================
 DEFAULT_SUBREDDITS: List[str] = [
-    "ghana"
+    "smallbusiness",
 ]
 DEFAULT_POST_LIMIT: int = 100
 DEFAULT_COMMENT_LIMIT: int = 80
 
 # =====================================================
+# REDDIT SCOUT BOT QUERIES SETTINGS
+# =====================================================
+SEARCH_QUERIES: List[str] = [
+    "What",
+    "Hate",
+]
+
+# =====================================================
 # REDDIT DATA FILTERING REQUIREMENTS
 # =====================================================
-MIN_COMMENTS = 50
-MIN_SCORE = 75
-MIN_UPVOTE_RATIO = 0.8
+MIN_COMMENTS = 30
+MIN_SCORE = 30
+MIN_UPVOTE_RATIO = 0.30
 
 # =====================================================
 # AGENT SETTINGS AND OBJECTIVES
 # =====================================================
 AGENT_MODEL = "gemini-2.5-flash"
 SCOUT_OBJECTIVE = """
+You are a market scout agent.
+
+Your ingress will come directly from the database using the `query_posts_with_sentiments()` function.
+
+Each record returned by that method includes:
+- Post Number
+- Title
+- Body
+- Subreddit
+- Sentiment Score (counts, average compound, dominant sentiment)
+
+Your new workflow:
+
+1. Call the `query_posts_with_sentiments()` function to retrieve all posts and their associated sentiment summaries.
+
+2. Group the retrieved posts by subreddit for contextual analysis.
+
+3. For each post:
+   - Interpret the sentiment data to understand audience tone and emotional intensity.
+   - Identify whether the discussion highlights a common or critical market problem.
+
+5. For each post, return a problem statement:
+   "X people face Y problem so build Z solution for W results."
+
+6. Accompany each with a sentiment statement:
+   "Sentiment statement: Sentiment towards [X: Entity/Topic] is predominantly [Y: Sentiment Label], with users [Z: Key themes, opinions, or concerns drawn from the discussion]."
+
+Output:
+- Return the problem statements and their sentiment statements.
+"""
+
+SCOUT_BOT_OBJECTIVE = """
 You are a market scout agent.
 
 Your ingress will come directly from the database using the `query_posts_with_sentiments()` function.

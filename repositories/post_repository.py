@@ -10,8 +10,10 @@ class PostRepository:
     Repository for handling Post and CuratedItem database operations.
     """
 
+
     def __init__(self, session: Session):
         self.session = session
+
 
     def create_posts(self, posts_data: List[Dict]) -> int:
         """
@@ -20,18 +22,19 @@ class PostRepository:
         count = 0
         for post_data in posts_data:
             post = Post(
-                submission_id=post_data["submission_id"],
-                subreddit=post_data.get("subreddit", ""),
-                title=post_data.get("title", ""),
-                body=post_data.get("body", ""),
-                upvote_ratio=post_data.get("upvote_ratio", 0.0),
-                score=post_data.get("score", 0),
-                number_of_comments=post_data.get("number_of_comments", 0),
-                post_url=post_data.get("post_url", "")
+                submission_id = post_data["submission_id"],
+                subreddit = post_data.get("subreddit", ""),
+                title = post_data.get("title", ""),
+                body = post_data.get("body", ""),
+                upvote_ratio = post_data.get("upvote_ratio", 0.0),
+                score = post_data.get("score", 0),
+                number_of_comments = post_data.get("number_of_comments", 0),
+                post_url = post_data.get("post_url", "")
             )
             self.session.add(post)
             count += 1
         return count
+
 
     def store_posts(self, reddit_data: Dict, validated_ids: Set[str]) -> int:
         """
@@ -48,6 +51,7 @@ class PostRepository:
                 posts_to_store.append(post)
         return self.create_posts(posts_to_store)
 
+
     def get_posts_with_sentiments(self, limit: int = 10) -> List:
         """
         Query posts that have not been curated yet, joined with their sentiments.
@@ -61,32 +65,37 @@ class PostRepository:
             .all()
         )
 
-    def get_all_posts(self) -> List[Post]:
+
+    def get_all_posts(self) -> List[type[Post]]:
         """
         Retrieve all posts.
         """
         return self.session.query(Post).all()
 
-    def get_posts_by_ids(self, post_ids: List[int]) -> List[Post]:
+
+    def get_posts_by_ids(self, post_ids: List[int]) -> List[type[Post]]:
         """
         Retrieve posts by their primary key IDs.
         """
         return self.session.query(Post).filter(Post.id.in_(post_ids)).all()
+
 
     def mark_as_curated(self, post_ids: List[int]):
         """
         Mark posts as curated.
         """
         self.session.query(Post).filter(Post.id.in_(post_ids)).update(
-            {"is_curated": True}, synchronize_session=False
+            {"is_curated": True}, synchronize_session = False
         )
+
 
     def add_curated_item(self, submission_id: str):
         """
         Add an item to the curated items table for tracking cleanup.
         """
-        curated_item = CuratedItem(submission_id=submission_id)
+        curated_item = CuratedItem(submission_id = submission_id)
         self.session.merge(curated_item)
+
 
     def get_curated_submission_ids(self) -> List[str]:
         """
@@ -98,14 +107,16 @@ class PostRepository:
             submission_ids.append(row.submission_id)
         return submission_ids
 
+
     def delete_posts_by_submission_ids(self, submission_ids: List[str]):
         """
         Delete posts by their submission IDs.
         """
         self.session.query(Post).filter(
             Post.submission_id.in_(submission_ids)).delete(
-            synchronize_session=False
+            synchronize_session = False
         )
+
 
     def delete_all_curated_items(self):
         """
