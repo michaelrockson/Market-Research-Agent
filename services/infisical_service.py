@@ -1,7 +1,8 @@
 import os
-
+from typing import List, Any
 from dotenv import load_dotenv
 from infisical_sdk import InfisicalSDKClient
+from infisical_sdk.api_types import MachineIdentityLoginResponse
 
 from utils.logger import logger
 
@@ -33,7 +34,14 @@ class InfisicalSecretsService:
         ]
 
 
-    def authenticate_infisical_client(self):
+    def authenticate_infisical_client(
+        self) -> MachineIdentityLoginResponse | None:
+        """
+        Authenticates the Infisical client using Universal Auth credentials.
+        Returns:
+        AuthenticationResponse | None: The authentication response on success,
+        or None if credentials are absent or authentication fails.
+        """
         client_id = os.getenv("INFISICAL_CLIENT_ID")
         client_secret = os.getenv("INFISICAL_CLIENT_SECRET")
 
@@ -56,7 +64,13 @@ class InfisicalSecretsService:
             return None
 
 
-    def load_infisical_secrets(self):
+    def load_infisical_secrets(self) -> List[Any] | None:
+        """
+        Fetches secrets from Infisical and injects them into the environment.
+        Returns:
+        list[str]: A list of loaded secrets in 'KEY:VALUE' format, or an empty
+        list if the project ID is missing or an error occurs.
+        """
         project_id = os.getenv("INFISICAL_PROJECT_ID")
         if not project_id:
             logger.warning(
