@@ -19,7 +19,7 @@ class CorePipeline:
         try:
             logger.info("Core Curation pipeline started")
 
-            logger.info("Executing curator agent...")
+            logger.info("Executing Curator Agent...")
             self.service.execute_curator_agent()
 
             logger.info("Storing curator response...")

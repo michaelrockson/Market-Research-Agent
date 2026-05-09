@@ -1,6 +1,7 @@
 from services.scout_bot_service import ScoutBotService
 from utils.logger import logger
 
+
 class ScoutBotPipeline:
     """
     Pipeline responsible for scouting and validating potential pain points from Reddit.

@@ -12,7 +12,7 @@ The agent runs a four-stage pipeline:
 
 - Scout — Searches Reddit for potential pain points and uses an agent to validate software solvability before anything is stored.
 - Ingress — Fetches full posts and comments for every approved submission ID.
-- Sentiment — Normalises text, filters noise, and runs VADER scoring to validate signal strength.
+- Sentiment — Normalizes text, filters noise, and runs VADER scoring to validate signal strength.
 - Curation — Runs structured Gemini prompts to identify recurring problems and package them as problem briefs.
 - Egress — Persists briefs to the database and exports to configured sinks (Notion / Email).
 

@@ -17,8 +17,8 @@ if __name__ == "__main__":
     core = CorePipeline()
     egress = EgressPipeline()
 
-    scout.run()
-    ingress.run()
-    sentiment.run()
-    core.run()
+    # scout.run()
+    # ingress.run()
+    # sentiment.run()
+    # core.run()
     egress.run(settings.CHOICE_THREE)

@@ -71,7 +71,6 @@ class CoreService:
             str or dict: Curator agent response text or error information.
         """
         try:
-            logger.info("Executing Curator Agent")
             response = self.agent.models.generate_content(
                 model = settings.AGENT_MODEL,
                 contents = settings.SCOUT_OBJECTIVE,
@@ -79,7 +78,6 @@ class CoreService:
                     tools = [self.query_posts_with_sentiments])
             )
 
-            logger.info("Curator Agent complete")
             curator_response = response.text
 
             self.curator_agent_response = curator_response
@@ -119,7 +117,6 @@ class CoreService:
             if self.curator_agent_response is not None:
                 self.brief_repo.create_brief(self.curator_agent_response)
 
-                # Mark as curated and record for cleanup
                 post_ids = []
                 for record in self.post_with_sentiments:
                     post_ids.append(record["post_number"])

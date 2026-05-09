@@ -1,5 +1,3 @@
-from typing import Optional
-
 from sqlalchemy.orm import Session
 
 from database.models import ProcessedBriefs
@@ -24,8 +22,9 @@ class BriefRepository:
         return brief
 
 
-    def get_latest_brief(self) -> Optional[ProcessedBriefs]:
+    def get_latest_brief(self) -> list[ProcessedBriefs]:
         """
-        Retrieve the first (or latest) processed brief.
+        Retrieve the latest processed briefs.
         """
-        return self.session.query(ProcessedBriefs).first()
+        return self.session.query(ProcessedBriefs).order_by(
+            ProcessedBriefs.id.desc()).limit(10).all()

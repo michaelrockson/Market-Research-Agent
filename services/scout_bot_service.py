@@ -32,9 +32,9 @@ class ScoutBotService:
         self.reddit = get_reddit_client()
         self.session = get_session()
         self.sia = SentimentIntensityAnalyzer()
+        self.gemini = initialize_gemini()
         self.search_results = []
         self.search_result_sentiments = []
-        self.gemini = initialize_gemini()
 
 
     def search_subreddit(self) -> List[List[Dict]]:
@@ -56,7 +56,7 @@ class ScoutBotService:
                     search_results = self.reddit.subreddit(subreddit).search(
                         search_query,
                         sort = "top",
-                        limit = 50,
+                        limit = 100,
                         time_filter = "month")
 
                     for search_result in search_results:

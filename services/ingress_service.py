@@ -46,7 +46,7 @@ class IngressService:
             unprocessed = validated_repo.get_unprocessed()
 
             if not unprocessed:
-                logger.info(
+                logger.warning(
                     "fetch_validated_posts: no unprocessed validated posts found.")
                 return []
 
@@ -63,9 +63,7 @@ class IngressService:
                     post_data = get_post_by_id(self.reddit, submission_id)
                     posts.append(post_data)
                     processed_ids.append(submission_id)
-                    logger.info(
-                        f"Scraped validated post '{submission_id}': {post_data['title'][:60]!r}"
-                    )
+
                 except Exception as e:
                     logger.error(
                         f"Failed to fetch submission '{submission_id}': {e}",

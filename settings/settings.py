@@ -60,16 +60,22 @@ DEFAULT_SUBREDDITS: List[str] = [
     "smallbusiness",
 ]
 DEFAULT_POST_LIMIT: int = 100
-DEFAULT_COMMENT_LIMIT: int = 80
+DEFAULT_COMMENT_LIMIT: int = 100
 
 # =====================================================
 # REDDIT SCOUT BOT QUERIES SETTINGS
 # =====================================================
 SEARCH_QUERIES: List[str] = [
-    "What",
-    "Hate",
-    "Manual",
-    "Frustration"
+    "How to speed up",
+    "This takes too long",
+    "Faster way to",
+    "Ways to save money on",
+    "Hidden costs of",
+    "How to stop spending money on",
+    "I hate how expensive",
+    "What’s the hardest part about",
+    "is draining my time reddit",
+    "Struggling with"
 ]
 
 # =====================================================
