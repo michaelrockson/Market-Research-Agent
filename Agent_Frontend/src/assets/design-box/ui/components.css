@@ -507,6 +507,10 @@ textarea.li-input {
     height: 100%;
     padding: var(--li-space-md) var(--li-space-sm);
     justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 .li-sidebar-header {
@@ -514,7 +518,6 @@ textarea.li-input {
     align-items: center;
     gap: var(--li-space-sm);
     padding: var(--li-space-sm) var(--li-space-md);
-    margin-bottom: var(--li-space-md);
 }
 
 .li-sidebar-logo {
@@ -560,7 +563,7 @@ ul.li-sidebar-item {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--li-space-xs);
+    gap: var(--li-space-sm);
 }
 
 ul.li-sidebar-item li {

@@ -131,6 +131,10 @@
     gap: var(--li-space-4);
 }
 
+.li-flex-no-gap {
+    display: flex;
+}
+
 .li-flex-lg {
     display: flex;
     gap: var(--li-space-8);
