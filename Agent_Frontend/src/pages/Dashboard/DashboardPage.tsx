@@ -1,4 +1,3 @@
-import HeaderBar from "../../shared/components/HeaderBar.tsx";
 import DashboardOverviewCharts from "./components/DashboardOverviewCharts.tsx";
 import DashboardOverviewCards from "./components/DashboardOverviewCards.tsx";
 import DashboardHistoryCard from "./components/DashboardHistoryCard.tsx";
@@ -6,7 +5,6 @@ import DashboardHistoryCard from "./components/DashboardHistoryCard.tsx";
 export default function DashboardPage() {
   return (
     <>
-      <HeaderBar />
       <section className="li-section-sm li-px-lg">
         <h1>Overview!</h1>
         <DashboardOverviewCards />

@@ -5,12 +5,14 @@ import DashboardPage from "../pages/Dashboard/DashboardPage.tsx";
 export default function DefaultLayout(): React.JSX.Element {
   return (
     <>
-      <HeaderBar />
-      <section className="li-section li-grid li-grid-dashboard">
-        <div className="li-container">
+      <section className="li-grid li-grid-default-layout">
+        <div className="li-container li-border-right">
           <h1>Sidebar</h1>
         </div>
-        <DashboardPage />
+        <div>
+          <HeaderBar />
+          <DashboardPage />
+        </div>
       </section>
     </>
   );

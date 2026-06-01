@@ -99,8 +99,9 @@
     grid-template-columns: repeat(12, 1fr);
 }
 
-.li-grid-dashboard {
+.li-grid-default-layout {
     grid-template-columns: 1fr 5fr;
+    gap: 0rem;
 }
 
 .li-grid-take-5 {

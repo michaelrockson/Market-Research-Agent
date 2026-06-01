@@ -96,6 +96,10 @@
     border-bottom: 1px solid var(--li-border-default);
 }
 
+.li-border-right {
+    border-right: 1px solid var(--li-border-default);
+}
+
 /* --- Shadows --- */
 
 .li-shadow-sm {
