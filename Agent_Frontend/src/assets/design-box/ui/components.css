@@ -497,3 +497,8 @@ textarea.li-input {
     content: '✓';
     color: var(--li-success);
 }
+
+
+.li-sidebar-item {
+    list-style: none;
+}

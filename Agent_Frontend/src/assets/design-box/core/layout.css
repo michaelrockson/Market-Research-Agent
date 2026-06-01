@@ -131,6 +131,16 @@
     gap: var(--li-space-4);
 }
 
+.li-flex-lg {
+    display: flex;
+    gap: var(--li-space-8);
+}
+
+.li-flex-xl {
+    display: flex;
+    gap: var(--li-space-16);
+}
+
 .li-flex2 {
     display: flex;
     gap: var(--li-space-2);
@@ -294,6 +304,14 @@
 
 .li-h-auto {
     height: auto;
+}
+
+.li-h-full {
+    height: 100%;
+}
+
+.li-h-90 {
+    height: 90%;
 }
 
 .li-mx-auto {
