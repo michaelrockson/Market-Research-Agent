@@ -1,4 +1,4 @@
-import LoginForm from "./LoginForm.tsx";
+import LoginForm from "./components/LoginForm.tsx";
 import React from "react";
 
 export default function LoginPage(): React.JSX.Element {

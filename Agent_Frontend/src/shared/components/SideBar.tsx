@@ -1,4 +1,8 @@
+import {useSideBar} from "../../hooks/useSideBar.tsx";
+
 export default function SideBar() {
+  const {sideBarNavs} = useSideBar();
+
   return (
     <aside className="li-section-sm li-h-90 li-sidebar">
       <div className="li-flex-xl li-flex-col li-border-b">
@@ -11,21 +15,11 @@ export default function SideBar() {
       <section className="li-sidebar-menu li-sidebar-group">
         <p className="li-sidebar-group-title">MAIN MENU</p>
         <ul className="li-flex-lg li-flex-col li-container li-sidebar-item">
-          <li>
-            <a>Dashboard</a>
-          </li>
-          <li>
-            <a>Active Subreddits</a>
-          </li>
-          <li>
-            <a>Painpoint Pipelines</a>
-          </li>
-          <li>
-            <a>Reports & Analysis</a>
-          </li>
-          <li>
-            <a>Agent Settings</a>
-          </li>
+          {sideBarNavs.map((nav) => (
+            <li>
+              <a>{nav.navLabel}</a>
+            </li>
+          ))}
         </ul>
       </section>
 
