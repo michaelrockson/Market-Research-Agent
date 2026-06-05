@@ -1,10 +1,11 @@
 import os
 from typing import List, Any
 
-from utils.logger import logger
 from dotenv import load_dotenv
 from infisical_sdk import InfisicalSDKClient
 from infisical_sdk.api_types import MachineIdentityLoginResponse
+
+from utils.logger import logger
 
 load_dotenv()
 

@@ -1,5 +1,7 @@
 from typing import Dict, List
 
+from google.genai import errors
+
 from clients.gemini_client import initialize_gemini, \
     provide_agent_tools
 from database import get_session
@@ -9,7 +11,6 @@ from repositories.sentiment_repository import SentimentRepository
 from settings import settings
 from utils.logger import logger
 from utils.rate_limiter import gemini_retry
-from google.genai import errors
 
 
 class CoreService:

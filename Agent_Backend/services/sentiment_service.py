@@ -2,12 +2,13 @@ from collections import Counter
 from typing import Dict, List
 
 import nltk
+from nltk.sentiment import SentimentIntensityAnalyzer
+
 from database import get_session
 from repositories.post_repository import PostRepository
 from repositories.sentiment_repository import SentimentRepository
 from utils.helpers import serialize_post, get_comments_for_post
 from utils.logger import logger
-from nltk.sentiment import SentimentIntensityAnalyzer
 
 
 class SentimentService:

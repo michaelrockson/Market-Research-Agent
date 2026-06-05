@@ -1,6 +1,9 @@
 import asyncio
 from typing import List, Dict
 
+from google.genai import errors
+from nltk.sentiment import SentimentIntensityAnalyzer
+
 from clients.gemini_client import initialize_gemini, \
     provide_agent_tools
 from clients.reddit_client import get_reddit_client, \
@@ -11,8 +14,6 @@ from settings import settings
 from utils.helpers import search_one
 from utils.logger import logger
 from utils.rate_limiter import batched_gather, gemini_retry
-from google.genai import errors
-from nltk.sentiment import SentimentIntensityAnalyzer
 
 
 class ScoutBotService:

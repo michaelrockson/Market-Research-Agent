@@ -3,8 +3,6 @@ import random
 import time
 from typing import Any, Coroutine, List
 
-from settings import settings
-from utils.logger import logger
 from tenacity import (
     RetryCallState,
     retry,
@@ -12,6 +10,9 @@ from tenacity import (
     stop_after_attempt,
     wait_exponential_jitter,
 )
+
+from settings import settings
+from utils.logger import logger
 
 
 class AsyncRateLimiter:
@@ -37,7 +38,7 @@ class AsyncRateLimiter:
         now = time.monotonic()
         elapsed = now - self._last_refill
         self._tokens = min(float(self.max_rate), self._tokens + (
-                elapsed / self.period) * self.max_rate)
+            elapsed / self.period) * self.max_rate)
         self._last_refill = now
 
 

@@ -1,5 +1,6 @@
-from database.models import ProcessedBriefs
 from sqlalchemy.orm import Session
+
+from database.models import ProcessedBriefs
 
 
 class BriefRepository:

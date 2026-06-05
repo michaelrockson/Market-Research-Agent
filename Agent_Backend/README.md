@@ -49,7 +49,7 @@ Create and activate a virtual environment:
    ```bash
    python -m venv .venv
    # Windows
-   .\.venv\Scripts\activate
+   source .venv/Scripts/activate
    # macOS/Linux
    source .venv/bin/activate
    ```

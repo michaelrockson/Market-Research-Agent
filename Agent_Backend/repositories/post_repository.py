@@ -1,7 +1,8 @@
 from typing import List, Dict, Set
 
-from database.models import Post, CuratedItem
 from sqlalchemy.orm import Session
+
+from database.models import Post, CuratedItem
 
 
 class PostRepository:

@@ -2,11 +2,12 @@ import asyncio
 from typing import List, Dict, Tuple, Any
 
 import markdown2
+from jinja2 import Environment
+from sqlalchemy.orm import Session
+
 from database.models import Comment, Post
 from utils.logger import logger
 from utils.rate_limiter import reddit_limiter, reddit_retry
-from jinja2 import Environment
-from sqlalchemy.orm import Session
 
 
 def serialize_comment(comment: Comment) -> Dict:

@@ -2,9 +2,10 @@ import os
 import sys
 from typing import List
 
+from dotenv import load_dotenv
+
 from services.infisical_service import InfisicalSecretsService
 from utils.logger import logger
-from dotenv import load_dotenv
 
 load_dotenv()
 
