@@ -1,7 +1,7 @@
 import React from "react";
 import HeaderBar from "../shared/components/HeaderBar.tsx";
-import DashboardPage from "../pages/Dashboard/DashboardPage.tsx";
 import SideBar from "../shared/components/SideBar.tsx";
+import DashboardPage from "../pages/Dashboard/DashboardPage.tsx";
 
 export default function DefaultLayout(): React.JSX.Element {
   return (

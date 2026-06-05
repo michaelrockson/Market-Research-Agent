@@ -102,6 +102,7 @@
 .li-grid-default-layout {
     grid-template-columns: 1fr 5fr;
     gap: 0rem;
+    min-height: 100vh;
 }
 
 .li-grid-take-5 {

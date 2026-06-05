@@ -7,12 +7,7 @@ export default function DashboardOverviewCards(): React.JSX.Element {
   return (
     <section className="li-section-sm li-grid li-grid-4">
       {cardData.map((data) => (
-        <DashboardAnalyticsCard
-          key={data.id}
-          Tag={data.Tag}
-          Data={data.Data}
-          Stat={data.Stat}
-        />
+        <DashboardAnalyticsCard key={data.id} Tag={data.Tag} Data={data.Data} />
       ))}
     </section>
   );

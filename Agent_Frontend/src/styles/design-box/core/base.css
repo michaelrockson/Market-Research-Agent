@@ -10,9 +10,14 @@
 
 html {
     font-size: 16px;
+    height: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+}
+
+#root {
+    height: 100%;
 }
 
 body {
@@ -23,6 +28,7 @@ body {
     line-height: var(--li-lh-base);
     font-weight: var(--li-fw-normal);
     min-height: 100vh;
+    height: 100%;
 }
 
 /* --- Typography Utilities --- */
