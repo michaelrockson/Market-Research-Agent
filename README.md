@@ -1,12 +1,12 @@
 # Project Watchtower
 
-A full-stack application for discovering, validating and tracking recurring software-solvable pain points from Reddit.
+A​‍​‌‍​‍‌ complete software application that helps users find, confirm and monitor problems that can be solved by software and which regularly arise in different areas of life, through Reddit.
 
-The backend collects Reddit discussions, performs sentiment analysis, validates opportunities using Gemini and generates structured problem briefs. The frontend provides the user interface for authentication, dashboards, pipeline management and reviewing generated opportunities.
+The backend is responsible for gathering Reddit discussions, analyzing the sentiments of the posts, validating the opportunities with Gemini and finally, creating structured problem briefs. 
 
-Results can be persisted to a database and optionally exported to services such as Notion.
+The frontend is the part of the application that the users interact with for authentication, viewing dashboards, managing pipelines and reviewing generated opportunities.
 
----
+It is possible to save the results in a database and also export them to other services like Notion if ​‍​‌‍​‍‌desired.
 
 # Getting Started
 

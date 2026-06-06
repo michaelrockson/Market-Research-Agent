@@ -1,12 +1,6 @@
 # Project Watchtower – Backend
 
-Automatically discover and validate real, recurring software problems from Reddit before you write a single line of
-product code.
-The agent monitors niche subreddits, filters noise with sentiment analysis and uses Gemini to produce structured problem
-briefs: validated pain points with enough context for your team to act on immediately.
-Results are persisted to a database and optionally exported to Notion or delivered by email.
-
-*Flask · SQLAlchemy · Gemini · Reddit API · Infisical*
+The backend is responsible for gathering Reddit discussions, analyzing the sentiments of the posts, validating the opportunities with Gemini and finally, creating structured problem briefs.
 
 ## How It Works
 
