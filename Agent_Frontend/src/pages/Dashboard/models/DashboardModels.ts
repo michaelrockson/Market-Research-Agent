@@ -29,3 +29,7 @@ export interface DashboardData {
   agentRecords: Record[];
   agentPayload: AgentPayload[];
 }
+
+export interface GreetingProps {
+  username: string;
+}

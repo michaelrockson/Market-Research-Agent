@@ -25,11 +25,11 @@ def get_analytics_info():
 def get_pipeline_info():
     try:
         payload: list[PipelineDataStruct] = [
-            PipelineDataStruct(pipeline = "Scout", runs = 62),
+            PipelineDataStruct(pipeline = "Scout", runs = 78),
             PipelineDataStruct(pipeline = "Ingress", runs = 82),
             PipelineDataStruct(pipeline = "Sentiment", runs = 62),
-            PipelineDataStruct(pipeline = "Core", runs = 76),
-            PipelineDataStruct(pipeline = "Egress", runs = 15),
+            PipelineDataStruct(pipeline = "Core", runs = 62),
+            PipelineDataStruct(pipeline = "Egress", runs = 24),
         ]
         return {"PipelinePayload": payload, "status_code": 200}
     except Exception as e:
@@ -40,14 +40,14 @@ def get_pipeline_info():
 def get_runs_info():
     try:
         payload: list[AgentRunStruct] = [
-            AgentRunStruct(month = "January", runs = 45),
+            AgentRunStruct(month = "January", runs = 34),
             AgentRunStruct(month = "February", runs = 60),
-            AgentRunStruct(month = "March", runs = 72),
-            AgentRunStruct(month = "April", runs = 14),
+            AgentRunStruct(month = "March", runs = 43),
+            AgentRunStruct(month = "April", runs = 52),
             AgentRunStruct(month = "May", runs = 35),
-            AgentRunStruct(month = "June", runs = 92),
-            AgentRunStruct(month = "July", runs = 140),
-            AgentRunStruct(month = "August", runs = 45),
+            AgentRunStruct(month = "June", runs = 62),
+            AgentRunStruct(month = "July", runs = 92),
+            AgentRunStruct(month = "August", runs = 65),
         ]
         return {"AgentRunPayload": payload, "status_code": 200}
     except Exception as e:

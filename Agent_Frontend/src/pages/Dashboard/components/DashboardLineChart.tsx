@@ -15,8 +15,9 @@ interface Props {
   agentData: AgentPayload[];
 }
 
-export default function DashboardLineChart({ agentData }: Props): React.JSX.Element {
-
+export default function DashboardLineChart({
+  agentData,
+}: Props): React.JSX.Element {
   return (
     <div className="li-card li-hover-lift">
       <div className="li-flex li-justify-between li-mb-md">
@@ -37,8 +38,8 @@ export default function DashboardLineChart({ agentData }: Props): React.JSX.Elem
             type="monotone"
             dataKey="runs"
             stroke="#27a644"
-            strokeWidth={3}
-            fill="rgb(39 166 68 / 0.42)"
+            strokeWidth={2}
+            fill="rgb(39 166 68 / 0.22)"
           />
         </AreaChart>
       </ResponsiveContainer>
