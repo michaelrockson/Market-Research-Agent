@@ -22,3 +22,4 @@ class AgentRecordsStruct(BaseModel):
     title: str
     content: str
     data: str
+    subreddit: str

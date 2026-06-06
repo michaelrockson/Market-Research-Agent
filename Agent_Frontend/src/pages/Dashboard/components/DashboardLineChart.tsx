@@ -1,45 +1,119 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Area,
   AreaChart,
   CartesianGrid,
-  Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
 import type { AgentPayload } from "../models/DashboardModels.ts";
+import DashboardTimeFilter, {
+  type TimePeriod,
+} from "./DashboardTimeFilter.tsx";
 
 interface Props {
   agentData: AgentPayload[];
 }
 
+interface TooltipProps {
+  active?: boolean;
+  payload?: { value: number; color: string }[];
+  label?: string;
+}
+
+function AgentActivityTooltip({ active, payload, label }: TooltipProps) {
+  if (!active || !payload?.length) return null;
+  return (
+    <div className="li-chart-tooltip">
+      <p className="li-chart-tooltip-label">{label}</p>
+      <div className="li-chart-tooltip-value">
+        <span>
+          <span
+            className="li-chart-tooltip-dot"
+            style={{ background: payload[0].color }}
+          />
+          Agent Runs
+        </span>
+        <span>{payload[0].value.toLocaleString()}</span>
+      </div>
+    </div>
+  );
+}
+
+const AXIS_STYLE = {
+  fontSize: 12,
+  fill: "#62666d",
+  fontFamily: "Inter, sans-serif",
+};
+
 export default function DashboardLineChart({
   agentData,
 }: Props): React.JSX.Element {
+  const [timePeriod, setTimePeriod] = useState<TimePeriod>("6months");
+
   return (
     <div className="li-card li-hover-lift">
-      <div className="li-flex li-justify-between li-mb-md">
-        <h3 className="li-mb-md">Agent Activity</h3>
+      <div className="li-flex li-justify-between li-items-center li-mb-md">
+        <div>
+          <h3 style={{ marginBottom: 2 }}>Agent Activity</h3>
+          <p className="li-text-xs li-text-muted">Run frequency over time</p>
+        </div>
+        <DashboardTimeFilter value={timePeriod} onChange={setTimePeriod} />
       </div>
+
       <ResponsiveContainer width="100%" aspect={2.2}>
-        <AreaChart data={agentData}>
+        <AreaChart
+          data={agentData}
+          margin={{ top: 4, right: 4, bottom: 0, left: -16 }}
+        >
+          <defs>
+            <linearGradient id="agentRunsGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#27a644" stopOpacity={0.35} />
+              <stop offset="100%" stopColor="#27a644" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+
           <CartesianGrid
             vertical={false}
-            strokeDasharray="2"
-            stroke="#62666d"
+            strokeDasharray="3 3"
+            stroke="rgba(255,255,255,0.06)"
           />
-          <XAxis dataKey="month" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
+
+          <XAxis
+            dataKey="month"
+            tick={AXIS_STYLE}
+            axisLine={false}
+            tickLine={false}
+            dy={8}
+          />
+          <YAxis
+            tick={AXIS_STYLE}
+            axisLine={false}
+            tickLine={false}
+            width={36}
+          />
+
+          <Tooltip
+            content={<AgentActivityTooltip />}
+            cursor={{ stroke: "rgba(255,255,255,0.08)", strokeWidth: 1 }}
+          />
+
           <Area
             type="monotone"
             dataKey="runs"
-            stroke="#27a644"
-            strokeWidth={2}
-            fill="rgb(39 166 68 / 0.22)"
+            stroke="#ff6a33"
+            strokeWidth={2.5}
+            fill="#ff4500"
+            fillOpacity={0.18}
+            dot={false}
+            activeDot={{
+              r: 5,
+              fill: "#ff6a33",
+              stroke: "#e0e6ec",
+              strokeWidth: 2,
+            }}
           />
         </AreaChart>
       </ResponsiveContainer>

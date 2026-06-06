@@ -60,16 +60,16 @@ def get_recent_findings():
         payload: list[AgentRecordsStruct] = [
             AgentRecordsStruct(id = 0, title = "Suspicious Login Attempt",
                                content = "Multiple failed attempts from unknown IP",
-                               data = "04-06-2026"),
+                               data = "04-06-2026", subreddit = "r/cybersecurity"),
             AgentRecordsStruct(id = 1, title = "API Rate Limit Exceeded",
                                content = "Service API hit threshold of 1000 req/min",
-                               data = "03-06-2026"),
+                               data = "03-06-2026", subreddit = "r/cscareer"),
             AgentRecordsStruct(id = 2, title = "New Device Registered",
                                content = "User admin authenticated from new device",
-                               data = "01-06-2026"),
+                               data = "01-06-2026", subreddit = "r/pingdevices"),
             AgentRecordsStruct(id = 3, title = "New Rust Package",
                                content = "New Rust package for something interesting",
-                               data = "01-06-2026"),
+                               data = "01-06-2026", subreddit = "r/softwaredevs"),
         ]
         return {"AgentRecordsPayload": payload, "status_code": 200}
     except Exception as e:
