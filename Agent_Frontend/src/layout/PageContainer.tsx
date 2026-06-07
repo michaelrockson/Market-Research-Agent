@@ -1,15 +1,13 @@
 import React from "react";
 import HeaderBar from "./HeaderBar.tsx";
 import SideBar from "./SideBar.tsx";
-import DashboardPage from "../../pages/DashboardPage.tsx";
+import DashboardPage from "../pages/DashboardPage.tsx";
 
-export default function DefaultLayout(): React.JSX.Element {
+export default function PageContainer(): React.JSX.Element {
   return (
     <>
       <section className="li-grid li-grid-default-layout">
-        <div className="li-container li-border-right">
-          <SideBar />
-        </div>
+        <SideBar />
         <div>
           <HeaderBar />
           <DashboardPage />

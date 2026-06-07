@@ -8,7 +8,10 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import type { DashboardLineChartProps, TimePeriod } from "../models/DashboardModels.ts";
+import type {
+  DashboardLineChartProps,
+  TimePeriod,
+} from "../models/DashboardModels.ts";
 import DashboardTimeFilter from "./DashboardTimeFilter.tsx";
 import AgentActivityTooltip from "./AgentActivityTooltip.tsx";
 

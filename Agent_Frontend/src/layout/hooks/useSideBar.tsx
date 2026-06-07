@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MdBarChart, MdDashboard, MdSettings } from "react-icons/md";
 import { FaReddit } from "react-icons/fa";
 import { IoMdFunnel } from "react-icons/io";
-import type { SideBarNavItems } from "../types/NavigationTypes.ts";
+import type { SideBarNavItems } from "../models/NavigationTypes.ts";
 
 const navItems: SideBarNavItems[] = [
   {

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { MdArrowForward } from "react-icons/md";
-import type { DashboardHistoryCardProps, TimePeriod } from "../models/DashboardModels.ts";
+import type {
+  DashboardHistoryCardProps,
+  TimePeriod,
+} from "../models/DashboardModels.ts";
 import DashboardTimeFilter from "./DashboardTimeFilter.tsx";
 import EmptyHistoryState from "./EmptyHistoryState.tsx";
 import { truncate } from "../utils/truncate.ts";

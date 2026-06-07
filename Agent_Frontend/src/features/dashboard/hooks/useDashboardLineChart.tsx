@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import type { DashboardData, AgentPayload } from "../models/DashboardModels.ts";
+import { useEffect, useRef, useState } from "react";
+import type { AgentPayload, DashboardData } from "../models/DashboardModels.ts";
 
 export function useDashboardLineChart(payload: DashboardData | null) {
   const [agentData, setAgentData] = useState<AgentPayload[]>([]);

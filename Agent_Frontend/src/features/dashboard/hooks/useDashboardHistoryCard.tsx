@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { DashboardData, Record } from "../models/DashboardModels.ts";
 
 export function useDashboardHistoryCard(payload: DashboardData | null) {

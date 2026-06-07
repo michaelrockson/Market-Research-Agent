@@ -1,5 +1,4 @@
 import React from "react";
-import { MdTrendingUp, MdTrendingDown, MdTrendingFlat } from "react-icons/md";
 import type {
   AnalyticsCardsPayload,
   AnalyticsCardVariant,
@@ -23,13 +22,6 @@ export default function DashboardAnalyticsCard({
 }: AnalyticsCardsPayload): React.JSX.Element {
   const iconBoxClass = variantIconBoxClass[variant];
 
-  const TrendIcon =
-    trendDirection === "up"
-      ? MdTrendingUp
-      : trendDirection === "down"
-        ? MdTrendingDown
-        : MdTrendingFlat;
-
   const trendClass =
     trendDirection === "up"
       ? "li-stat-trend li-stat-trend-up"
@@ -48,11 +40,10 @@ export default function DashboardAnalyticsCard({
         )}
       </div>
 
-      <p className="li-stat-value li-mb-sm">{data}</p>
+      <h1 className="li-h1 li-mb-sm">{data}</h1>
 
       {trend !== undefined && (
         <span className={trendClass}>
-          <TrendIcon size={12} />
           {trendDirection === "down" ? "-" : "+"}
           {Math.abs(trend)}%{" "}
           <span style={{ fontWeight: 400, opacity: 0.7 }}>vs last month</span>

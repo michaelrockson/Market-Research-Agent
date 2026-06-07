@@ -8,7 +8,10 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
-import type { DashboardHexChartProps, TimePeriod } from "../models/DashboardModels.ts";
+import type {
+  DashboardHexChartProps,
+  TimePeriod,
+} from "../models/DashboardModels.ts";
 import DashboardTimeFilter from "./DashboardTimeFilter.tsx";
 import PipelineTooltip from "./PipelineTooltip.tsx";
 

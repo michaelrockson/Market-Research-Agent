@@ -1,5 +1,8 @@
-import { useState, useEffect, useRef } from "react";
-import type { DashboardData, PipelinePayload } from "../models/DashboardModels.ts";
+import { useEffect, useRef, useState } from "react";
+import type {
+  DashboardData,
+  PipelinePayload,
+} from "../models/DashboardModels.ts";
 
 export function useDashboardHexChart(payload: DashboardData | null) {
   const [pipelineData, setPipelineData] = useState<PipelinePayload[]>([]);

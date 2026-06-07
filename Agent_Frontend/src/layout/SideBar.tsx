@@ -1,4 +1,4 @@
-import { useSideBar } from "../../hooks/useSideBar.tsx";
+import { useSideBar } from "./hooks/useSideBar.tsx";
 
 export default function SideBar() {
   const { sideBarNavs } = useSideBar();
@@ -14,7 +14,7 @@ export default function SideBar() {
 
       <section className="li-sidebar-menu li-sidebar-group">
         <p className="li-sidebar-group-title">MAIN MENU</p>
-        <ul className="li-flex-lg li-flex-col li-container li-sidebar-item">
+        <ul className="li-flex-lg li-flex-col li-sidebar-item">
           {sideBarNavs.map((nav) => (
             <li key={nav.id}>
               <a href="">

@@ -7,3 +7,4 @@ export { useDashboardOverviewCards } from "./hooks/useDashboardOverviewCards.tsx
 export { useDashboardLineChart } from "./hooks/useDashboardLineChart.tsx";
 export { useDashboardHexChart } from "./hooks/useDashboardHexChart.tsx";
 export { useDashboardHistoryCard } from "./hooks/useDashboardHistoryCard.tsx";
+export { dashboardService } from "./services/DashboardService.ts";

@@ -1,6 +1,11 @@
 import type { IconType } from "react-icons";
 
-export type AnalyticsCardVariant = "info" | "success" | "warning" | "error" | "brand";
+export type AnalyticsCardVariant =
+  | "info"
+  | "success"
+  | "warning"
+  | "error"
+  | "brand";
 
 export type AnalyticsCardsPayload = {
   id?: number;

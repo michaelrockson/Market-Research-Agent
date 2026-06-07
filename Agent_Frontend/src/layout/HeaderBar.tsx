@@ -1,15 +1,13 @@
 import React from "react";
 import { MdNotificationsNone, MdSearch } from "react-icons/md";
 import { useLiveClock } from "./hooks/useLiveClock.ts";
-import { formatTimestamp } from "./utils/formatTimestamp.ts";
 import type { HeaderBarProps } from "./models/LayoutModels.ts";
 
 export default function HeaderBar({
   pageTitle = "Dashboard",
   notificationCount = 0,
 }: HeaderBarProps): React.JSX.Element {
-  const now = useLiveClock();
-
+  useLiveClock();
   return (
     <header className="li-border-b li-navbar">
       <div className="li-container">
@@ -21,8 +19,6 @@ export default function HeaderBar({
           </div>
 
           <div className="li-flex li-items-center">
-            <span className="li-header-timestamp">{formatTimestamp(now)}</span>
-
             <div className="li-header-search-wrap">
               <MdSearch className="li-header-search-icon" size={16} />
               <input

@@ -1,19 +1,18 @@
-import { dashboardService } from "../../../services/DashboardService.ts";
+import { dashboardService } from "../services/DashboardService.ts";
 import type { DashboardData } from "../models/DashboardModels.ts";
 
 export async function fetchDashboardData(): Promise<DashboardData> {
-  const [analyticsRes, pipelineRes, recordsRes, agentRes] =
-    await Promise.all([
-      dashboardService.getAnalyticsCardData(),
-      dashboardService.getPipelineData(),
-      dashboardService.getAgentRecords(),
-      dashboardService.getLineChartData(),
-    ]);
-  return { 
-    analyticsCardData: analyticsRes.AnalyticsCards, 
-    pipelineData: pipelineRes.PipelinePayload, 
-    agentRecords: recordsRes.AgentRecordsPayload, 
-    agentPayload: agentRes.AgentRunPayload 
+  const [analyticsRes, pipelineRes, recordsRes, agentRes] = await Promise.all([
+    dashboardService.getAnalyticsCardData(),
+    dashboardService.getPipelineData(),
+    dashboardService.getAgentRecords(),
+    dashboardService.getLineChartData(),
+  ]);
+  return {
+    analyticsCardData: analyticsRes.AnalyticsCards,
+    pipelineData: pipelineRes.PipelinePayload,
+    agentRecords: recordsRes.AgentRecordsPayload,
+    agentPayload: agentRes.AgentRunPayload,
   };
 }
 

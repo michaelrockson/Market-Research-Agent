@@ -2,15 +2,15 @@ import React from "react";
 import LoadingScreen from "../components/ui/LoadingScreen.tsx";
 import ErrorScreen from "../components/ui/ErrorScreen.tsx";
 import {
-  DashboardOverviewCharts,
-  DashboardOverviewCards,
-  DashboardHistoryCard,
   DashboardGreeting,
-  useDashboardPage,
-  useDashboardOverviewCards,
-  useDashboardLineChart,
+  DashboardHistoryCard,
+  DashboardOverviewCards,
+  DashboardOverviewCharts,
   useDashboardHexChart,
   useDashboardHistoryCard,
+  useDashboardLineChart,
+  useDashboardOverviewCards,
+  useDashboardPage,
 } from "../features/dashboard/index.ts";
 
 export default function DashboardPage(): React.JSX.Element {
