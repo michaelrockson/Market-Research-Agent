@@ -614,13 +614,12 @@ textarea.li-input {
 .li-sidebar {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100vh;
     padding: var(--li-space-md) var(--li-space-sm);
     justify-content: space-between;
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    z-index: 1000;
+    z-index: 100;
     background: rgba(8, 9, 10, 0.4);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);

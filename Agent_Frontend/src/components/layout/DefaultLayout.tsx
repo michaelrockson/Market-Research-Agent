@@ -7,9 +7,7 @@ export default function DefaultLayout(): React.JSX.Element {
   return (
     <>
       <section className="li-grid li-grid-default-layout">
-        <div className="li-container li-border-right">
-          <SideBar />
-        </div>
+        <SideBar />
         <div>
           <HeaderBar />
           <DashboardPage />
