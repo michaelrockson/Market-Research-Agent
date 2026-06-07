@@ -16,7 +16,6 @@ export default function DashboardGreeting({
         <h2 className="li-greeting-headline">
           {greetingMessage},{" "}
           <span className="li-greeting-name">{firstName}</span>
-          <span className="li-greeting-wave">👋</span>
         </h2>
         <p className="li-greeting-sub">
           Here's what's happening with your agents and pipelines today.
