@@ -8,7 +8,7 @@ export default function DashboardOverviewCards({
   return (
     <section className="li-section-sm li-grid li-grid-4">
       {cardData.map((data) => (
-        <DashboardAnalyticsCard key={data.id} tag={data.tag} data={data.data} />
+        <DashboardAnalyticsCard key={data.id} {...data} />
       ))}
     </section>
   );

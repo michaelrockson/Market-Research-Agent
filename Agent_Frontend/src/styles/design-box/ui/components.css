@@ -1084,26 +1084,18 @@ ul.li-sidebar-item li.active a::before {
     gap: 3px;
     font-size: var(--li-fs-xs);
     font-weight: var(--li-fw-semibold);
-    padding: 2px 6px;
-    border-radius: var(--li-radius-full);
 }
 
 .li-stat-trend-up {
-    background: rgba(39, 166, 68, 0.1);
     color: var(--li-success);
-    border: 1px solid rgba(39, 166, 68, 0.2);
 }
 
 .li-stat-trend-down {
-    background: rgba(235, 87, 87, 0.1);
     color: var(--li-error);
-    border: 1px solid rgba(235, 87, 87, 0.2);
 }
 
 .li-stat-trend-neutral {
-    background: rgba(255, 255, 255, 0.05);
     color: var(--li-text-muted);
-    border: 1px solid var(--li-border-dim);
 }
 
 /* --- Chart Tooltip --- */
