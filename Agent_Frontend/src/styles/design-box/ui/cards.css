@@ -11,6 +11,17 @@
   background-color: var(--li-bg-surface);
 }
 
+.li-card-mute {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--li-border-active);
+  box-shadow: var(--li-shadow-inner), var(--li-shadow-sm);
+  border-radius: var(--li-radius-lg);
+  padding: var(--li-space-8);
+  overflow: hidden;
+  background-color: var(--li-bg-card);
+}
+
 .li-card-header {
   margin-bottom: var(--li-space-8);
 }
