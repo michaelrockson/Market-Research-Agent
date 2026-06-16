@@ -130,7 +130,7 @@ const mockPipelineRunHistory = [
   },
 ];
 
-export function usePipeline() {
+export function usePipelineBoard() {
   const [nodes, setNodes] = useState<PipelineNode[]>(initialNodes);
   const [edges, setEdges] = useState<PipelineEdge[]>(initialEdges);
   const [runHistory] = useState(mockPipelineRunHistory);

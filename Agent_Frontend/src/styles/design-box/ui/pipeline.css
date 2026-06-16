@@ -550,6 +550,21 @@
   color: var(--li-text-muted);
 }
 
+.li-pipeline-icon--error {
+  color: var(--li-error);
+  filter: drop-shadow(0 0 6px rgba(235, 87, 87, 0.3));
+}
+
+.li-pipeline-icon--success {
+  color: var(--li-success);
+  filter: drop-shadow(0 0 6px rgba(39, 166, 68, 0.3));
+}
+
+.li-pipeline-icon--process {
+  color: #3a63ea;
+  filter: drop-shadow(0 0 6px rgb(62 110 229 / 0.5));
+}
+
 /* ── Divider ── */
 
 .pipeline-node-divider {

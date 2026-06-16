@@ -1,10 +1,10 @@
 import React from "react";
 import { MdArrowForward } from "react-icons/md";
 import EmptyDataState from "../../../components/ui/EmptyDataState.tsx";
-import { usePipeline } from "../hooks/usePipeline.tsx";
+import { usePipelineBoard } from "../hooks/usePipelineBoard.tsx";
 
 export default function PipelineRunHistory(): React.JSX.Element {
-  const { runHistory } = usePipeline();
+  const { runHistory } = usePipelineBoard();
   return (
     <section className="li-section-sm">
       <div className="li-card">
