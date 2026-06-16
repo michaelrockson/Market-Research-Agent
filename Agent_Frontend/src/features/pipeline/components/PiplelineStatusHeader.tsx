@@ -1,7 +1,7 @@
 import React from "react";
 import { MdCheckCircle } from "react-icons/md";
 
-export default function PipelineHeader(): React.JSX.Element {
+export default function PipelineStatusHeader(): React.JSX.Element {
   return (
     <div className="li-flex li-justify-between">
       <div>

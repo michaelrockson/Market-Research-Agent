@@ -2,7 +2,7 @@ import React from "react";
 import { usePipelineBoard } from "../hooks/usePipelineBoard.tsx";
 import { Background, ConnectionLineType, ReactFlow } from "@xyflow/react";
 import PipelineNode from "./PipelineNode.tsx";
-import { PipelineHeader } from "../index..ts";
+import PipelineStatusHeader from "./PiplelineStatusHeader.tsx";
 
 const nodeTypes = {
   custom: PipelineNode,
@@ -13,7 +13,7 @@ export default function PipelineBoard(): React.JSX.Element {
 
   return (
     <div className="li-pipeline-workspace li-flex-col li-card">
-      <PipelineHeader />
+      <PipelineStatusHeader />
 
       <ReactFlow
         nodes={nodes}

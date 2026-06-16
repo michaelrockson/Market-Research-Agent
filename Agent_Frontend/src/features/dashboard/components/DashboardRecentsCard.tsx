@@ -67,7 +67,7 @@ export default function DashboardRecentsCard({
                     </td>
                     <td>
                       {row.subreddit ? (
-                        <span className="li-badge-subreddit">
+                        <span className="li-badge li-badge-warning">
                           {row.subreddit}
                         </span>
                       ) : (

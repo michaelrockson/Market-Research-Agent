@@ -10,7 +10,7 @@ export default function PipelineCards({
   return (
     <div className="li-card">
       <p className="li-text-sm li-text-secondary li-mb-md">{tag}</p>
-      <h2 className="li-h2 li-mb-sm">{data}</h2>
+      <h3 className="li-h3 li-mb-sm">{data}</h3>
     </div>
   );
 }

@@ -54,7 +54,9 @@ export default function PipelineRunHistory(): React.JSX.Element {
                     <td>{row.duration}</td>
                     <td>
                       {row.status ? (
-                        <span className="li-badge-subreddit">{row.status}</span>
+                        <span className="li-badge li-badge-warning">
+                          {row.status}
+                        </span>
                       ) : (
                         <span className="li-text-muted li-text-xs">—</span>
                       )}
