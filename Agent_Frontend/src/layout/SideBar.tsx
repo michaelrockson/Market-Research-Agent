@@ -6,9 +6,13 @@ export default function SideBar() {
 
   return (
     <aside className="li-section-sm li-h-full li-sidebar">
-      <div className="li-flex-xl li-flex-col li-border-b">
+      <div className="li-flex-xl li-flex-col">
         <div className="li-sidebar-header">
-          <div className="li-sidebar-logo">RM</div>
+          <img
+            src="/public/favicon.png"
+            alt="System logo"
+            style={{ width: 35, height: 35 }}
+          />
           <p className="li-sidebar-title">Reddit-Mine</p>
         </div>
       </div>
@@ -22,7 +26,7 @@ export default function SideBar() {
                 to={nav.path}
                 end={nav.path === "/dashboard"}
                 className={({ isActive }) =>
-                  isActive ? "li-nav-link li-nav-link--active" : "li-nav-link"
+                  isActive ? "li-nav-link active" : "li-nav-link"
                 }
               >
                 {nav.icon && <nav.icon />}
