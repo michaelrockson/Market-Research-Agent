@@ -3,8 +3,8 @@ from datetime import datetime, timedelta
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from apscheduler.schedulers.background import BlockingScheduler
 
-from modules.scheduler.scheduler_service import JobService
-from shared.utils.logger import logger
+from services.jobs_service import JobService
+from utils.logger import logger
 
 job_stores = {
     'default': SQLAlchemyJobStore(url = 'sqlite:///jobs.sqlite')
