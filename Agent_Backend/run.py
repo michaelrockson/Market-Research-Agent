@@ -1,14 +1,14 @@
 import sys
 
-from shared.database.init_db import init_db
-from modules.filtering.filtering_pipeline import CorePipeline
-from modules.delivery.delivery_pipeline import EgressPipeline
-from modules.reddit_sync.ingress_pipeline import IngressPipeline
-from modules.discovery.discovery_pipeline import ScoutBotPipeline
-from modules.analysis.analysis_pipeline import SentimentPipeline
-from shared.settings import settings
-from shared.utils.helpers import run_pipeline
-from shared.utils.logger import logger
+from database.init_db import init_db
+from pipelines.core_pipeline import CorePipeline
+from pipelines.egress_pipeline import EgressPipeline
+from pipelines.ingress_pipeline import IngressPipeline
+from pipelines.scout_pipeline import ScoutBotPipeline
+from pipelines.sentiment_pipeline import SentimentPipeline
+from settings import settings
+from utils.helpers import run_pipeline
+from utils.logger import logger
 
 if __name__ == "__main__":
     logger.info("Initializing database...")
