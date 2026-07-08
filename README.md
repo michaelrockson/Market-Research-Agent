@@ -1,4 +1,4 @@
-# Reddit-Mine
+# Market-Research-Agent
 
 A​‍​‌‍​‍‌ complete software application that helps users find, confirm and monitor problems that can be solved by software and which regularly arise in different areas of life, through Reddit.
 
@@ -32,7 +32,7 @@ Optional:
 Clone the repository:
 
 ```bash
-git clone https://github.com/michaelrockson/Reddit-Mine.git
+git clone https://github.com/michaelrockson/Market-Research-Agent.git
 cd Reddit-Mine
 ```
 
