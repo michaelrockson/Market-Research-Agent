@@ -39,7 +39,10 @@ Run the setup script:
    ./setup.sh
    ```
 
-*This creates a virtual environment, installs dependencies and initializes your `.env` file.*
+```bash
+git clone https://github.com/michaelrockson/Market-Research-Agent.git
+cd Reddit-Mine
+```
 
 ### Option 2. Manual Setup
 
