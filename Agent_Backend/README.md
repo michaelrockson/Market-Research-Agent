@@ -109,12 +109,6 @@ Run the full pipeline once manually:
 python run.py
 ```
 
-Run the FastAPI API server:
-
-```cmd
-python server.py
-```
-
 ## Project Structure
 
 ```
