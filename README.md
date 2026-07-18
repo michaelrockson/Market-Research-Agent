@@ -115,7 +115,7 @@ python run.py
 ## Project Structure
 
 ```
-reddit-mine/
+Agent/
 ├── scheduler.py                # Background scheduler (APScheduler)
 ├── run.py                      # Manual entry point
 ├── server.py                   # FastAPI server entry point
