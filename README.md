@@ -1,76 +1,195 @@
-# Reddit-Mine
+# Market-Research-Agent
 
-A​‍​‌‍​‍‌ complete software application that helps users find, confirm and monitor problems that can be solved by software and which regularly arise in different areas of life, through Reddit.
+The backend is responsible for gathering Reddit discussions, analyzing the sentiments of the posts, validating the opportunities with Gemini and finally, creating structured problem briefs.
 
-The backend is responsible for gathering Reddit discussions, analyzing the sentiments of the posts, validating the opportunities with Gemini and finally, creating structured problem briefs. It also exposes API endpoints via FastAPI.
+## How It Works
 
-It is possible to save the results in a database and also export them to other services like Notion if ​‍​‌‍​‍‌desired.
+The agent runs a four-stage pipeline:
 
-# Getting Started
+- Scout: Searches Reddit for potential pain points and uses an agent to validate software solvability before anything
+  is stored.
+- Ingress: Fetches full posts and comments for every approved submission ID.
+- Sentiment: Normalizes text, filters noise, and runs VADER scoring to validate signal strength.
+- Curation: Runs structured Gemini prompts to identify recurring problems and package them as problem briefs.
+- Egress: Persists briefs to the database and exports to configured sinks (Notion / Email).
 
-These instructions will give you a copy of the project up and running on your local machine for development purposes.
+## Prerequisites
 
-# Prerequisites
+- Python 3.11+ (tested with 3.13)
+- A Reddit app (client ID & secret)
+- A Gemini API key (Google LLM)
+- An [Infisical](https://infisical.com) project with secrets configured
+- Optional: Notion integration + Email credentials
 
-Requirements for the software and other tools to build and run the project:
+## Install
 
-* Python 3.11+ (Backend)
-* Reddit Developer Application (Client ID and Secret)
-* Gemini API Key
-* Infisical Project (recommended)
-* Email Credentials
-
-Optional:
-
-* Notion Integration
-
-# Installing
+### Option 1. Automated Setup (Recommended)
 
 Clone the repository:
 
-```bash
-git clone https://github.com/michaelrockson/Reddit-Mine.git
-cd Reddit-Mine
+   ```bash
+   git clone https://github.com/michaelrockson/Reddit-Mine.git
+   cd Reddit-Mine
+   ```
+
+Run the setup script:
+
+   ```bash
+   chmod +x ./setup.sh
+   ./setup.sh
+   ```
+
+*This creates a virtual environment, installs dependencies and initializes your `.env` file.*
+
+### Option 2. Manual Setup
+
+Clone the repository and navigate to the directory.
+Create and activate a virtual environment:
+
+   ```bash
+   python -m venv .venv
+   # Windows
+   source .venv/Scripts/activate
+   # macOS/Linux
+   source .venv/bin/activate
+   ```
+
+Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+Initialize the environment file:
+
+   ```bash
+   # Windows
+   copy .env.example .env
+   # macOS/Linux
+   cp .env.example .env
+   ```
+
+### Configure `.env`
+
+Open the `.env` file and fill in your credentials.
+
+**If using Infisical (Recommended for security):**
+You only need to provide the Infisical connection details. The agent will fetch all other secrets from your Infisical
+project at runtime.
+
+```env
+INFISICAL_CLIENT_ID=your_client_id
+INFISICAL_CLIENT_SECRET=your_client_secret
+INFISICAL_PROJECT_ID=your_project_id
 ```
 
-The project currently consists of:
+**If NOT using Infisical:**
+Leave the Infisical fields blank and fill in the individual secrets directly in the `.env` file (Reddit, Gemini,
+Database, etc.).
 
-* **Agent_Backend** – Reddit ingestion, sentiment analysis, AI curation, data persistence, and API endpoints.
-
-For detailed setup instructions, refer to the component README:
-
-### Backend
-
-```text
-Agent_Backend/README.md
+```env
+REDDIT_CLIENT_ID=your_reddit_id
+REDDIT_CLIENT_SECRET=your_reddit_secret
+GEMINI_API_KEY=your_gemini_key
+DATABASE_URL=sqlite:///database.db
+...
 ```
 
-This README contains installation, configuration, development and operational instructions specific to the backend component.
+### Run
 
-# Built With
+Run the background scheduler:
 
-* FastAPI (expected)
-* SQLAlchemy
-* PRAW (Reddit API)
-* Google Gemini
-* Infisical
-* APScheduler
+```cmd
+python scheduler.py
+```
 
-# Contributing
+Run the full pipeline once manually:
 
-Please read CONTRIBUTING.md for details on our code of conduct and the process for submitting pull requests.
+```cmd
+python run.py
+```
 
-**Versioning**
+## Project Structure
 
-We use Semantic Versioning for versioning. For the versions available, see the tags on this repository.
+```
+reddit-mine/
+├── scheduler.py                # Background scheduler (APScheduler)
+├── run.py                      # Manual entry point
+├── server.py                   # FastAPI server entry point
+│
+├── pipelines/              # Coordinate the data flow between services
+│   ├── scout_pipeline.py       # Discovery & validation (Scout Bot)
+│   ├── ingress_pipeline.py     # Targeted data collection
+│   ├── sentiment_pipeline.py   # Sentiment analysis
+│   ├── core_pipeline.py        # AI Curation (Gemini)
+│   └── egress_pipeline.py      # Data delivery (Notion/Email)
+│
+├── services/                   # Business logic
+│   ├── scout_bot_service.py    # Agentic scouting & ID staging
+│   ├── infisical_service.py    # Runtime secrets loading from Infisical
+│   ├── ingress_service.py      # Reddit data collection
+│   ├── reddit_service.py       # Scraping & storage pipeline coordinator
+│   ├── sentiment_service.py    # Sentiment analysis
+│   ├── core_service.py         # Curator Agent (Gemini)
+│   └── egress_service.py       # Email & Notion exporters
+│
+├── repositories/               # Data access layer (SQLAlchemy)
+│   ├── validated_post_repository.py
+│   ├── post_repository.py
+│   ├── comment_repository.py
+│   ├── sentiment_repository.py
+│   └── brief_repository.py
+│
+├── clients/                    # External API adapters
+│   ├── reddit_client.py
+│   └── gemini_client.py
+│
+├── database/                   # Models and DB initialization
+│   └── models.py
+│
+├── settings/
+│   └── settings.py             # Settings & env variable mapping
+│
+└── utils/
+    ├── logger.py               # Shared logger
+    └── helpers.py              # Shared utilities: serializers, Reddit fetchers,
+                                #   data integrity checks, text chunking,
+                                #   Notion block builders & email formatter
+```
 
-# Authors
+## Secrets Management
 
-* **Michael Coffie Rockson** - Project Owner and Lead Developer
+Secrets are loaded dynamically at startup using `InfisicalSecretsService`. When the app initializes,
+`settings/settings.py` authenticates with Infisical and injects all project secrets into the environment before any
+constants are resolved.
 
-# Acknowledgments
+The following secrets should be configured in your Infisical project:
 
-* Reddit API ecosystem
-* Google Gemini
-* Open-source Python and React communities
-* Inspiration from AI Agentic Workflows and Agents
+| Secret                 | Description                           |
+|------------------------|---------------------------------------|
+| `REDDIT_CLIENT_ID`     | Reddit app client ID                  |
+| `REDDIT_CLIENT_SECRET` | Reddit app client secret              |
+| `REDDIT_USER_AGENT`    | Reddit API user agent string          |
+| `GEMINI_API_KEY`       | Google Gemini API key                 |
+| `NOTION_API_KEY`       | Notion integration token *(optional)* |
+| `NOTION_DB_ID`         | Notion database ID *(optional)*       |
+| `EMAIL_ADDRESS`        | Sender email address                  |
+| `EMAIL_APP_PASSWORD`   | Email app password                    |
+| `RECIPIENT_ADDRESS`    | Report recipient email                |
+| `DATABASE_URL`         | SQLAlchemy database connection URL    |
+
+## Features
+
+- Reddit ingestion and data collection
+- Sentiment analysis pipeline
+- Gemini-based Curator Agent
+- Notion sync (optional) and email notifications
+- Repository pattern (data access layer)
+- Dynamic secrets loading via Infisical
+- Egress helpers extracted to utils/helpers.py
+
+## Notes & Limitations
+
+- Backend infrastructure only no UI
+- Focused exclusively on Reddit as a data source
+- LLM inference costs apply depending on Gemini usage tier
