@@ -2,9 +2,7 @@
 
 A​‍​‌‍​‍‌ complete software application that helps users find, confirm and monitor problems that can be solved by software and which regularly arise in different areas of life, through Reddit.
 
-The backend is responsible for gathering Reddit discussions, analyzing the sentiments of the posts, validating the opportunities with Gemini and finally, creating structured problem briefs. 
-
-The frontend is the part of the application that the users interact with for authentication, viewing dashboards, managing pipelines and reviewing generated opportunities.
+The backend is responsible for gathering Reddit discussions, analyzing the sentiments of the posts, validating the opportunities with Gemini and finally, creating structured problem briefs. It also exposes API endpoints via FastAPI.
 
 It is possible to save the results in a database and also export them to other services like Notion if ​‍​‌‍​‍‌desired.
 
@@ -17,7 +15,6 @@ These instructions will give you a copy of the project up and running on your lo
 Requirements for the software and other tools to build and run the project:
 
 * Python 3.11+ (Backend)
-* Node.js 18+ and npm (Frontend)
 * Reddit Developer Application (Client ID and Secret)
 * Gemini API Key
 * Infisical Project (recommended)
@@ -36,12 +33,11 @@ git clone https://github.com/michaelrockson/Reddit-Mine.git
 cd Reddit-Mine
 ```
 
-The project consists of two primary components:
+The project currently consists of:
 
-* **Agent_Backend** – Reddit ingestion, sentiment analysis, AI curation and data persistence.
-* **Agent_Frontend** – User interface for authentication, dashboards and agent management.
+* **Agent_Backend** – Reddit ingestion, sentiment analysis, AI curation, data persistence, and API endpoints.
 
-For detailed setup instructions, refer to the component READMEs:
+For detailed setup instructions, refer to the component README:
 
 ### Backend
 
@@ -49,13 +45,7 @@ For detailed setup instructions, refer to the component READMEs:
 Agent_Backend/README.md
 ```
 
-### Frontend
-
-```text
-Agent_Frontend/README.md
-```
-
-Each README contains installation, configuration, development and operational instructions specific to that component.
+This README contains installation, configuration, development and operational instructions specific to the backend component.
 
 # Built With
 
@@ -64,9 +54,6 @@ Each README contains installation, configuration, development and operational in
 * PRAW (Reddit API)
 * Google Gemini
 * Infisical
-* React
-* TypeScript
-* Vite
 * APScheduler
 
 # Contributing

@@ -1,4 +1,4 @@
-# Reddit-Mine – Backend
+# Market-Research-Agent
 
 The backend is responsible for gathering Reddit discussions, analyzing the sentiments of the posts, validating the opportunities with Gemini and finally, creating structured problem briefs.
 
@@ -6,12 +6,12 @@ The backend is responsible for gathering Reddit discussions, analyzing the senti
 
 The agent runs a four-stage pipeline:
 
-- Scout — Searches Reddit for potential pain points and uses an agent to validate software solvability before anything
+- Scout: Searches Reddit for potential pain points and uses an agent to validate software solvability before anything
   is stored.
-- Ingress — Fetches full posts and comments for every approved submission ID.
-- Sentiment — Normalizes text, filters noise, and runs VADER scoring to validate signal strength.
-- Curation — Runs structured Gemini prompts to identify recurring problems and package them as problem briefs.
-- Egress — Persists briefs to the database and exports to configured sinks (Notion / Email).
+- Ingress: Fetches full posts and comments for every approved submission ID.
+- Sentiment: Normalizes text, filters noise, and runs VADER scoring to validate signal strength.
+- Curation: Runs structured Gemini prompts to identify recurring problems and package them as problem briefs.
+- Egress: Persists briefs to the database and exports to configured sinks (Notion / Email).
 
 ## Prerequisites
 
@@ -97,24 +97,31 @@ DATABASE_URL=sqlite:///database.db
 
 ### Run
 
-Run the background scheduler (every 2 weeks):
+Run the background scheduler:
 
 ```cmd
-python agent.py
+python scheduler.py
 ```
 
 Run the full pipeline once manually:
 
 ```cmd
-python main.py
+python run.py
+```
+
+Run the FastAPI API server:
+
+```cmd
+python server.py
 ```
 
 ## Project Structure
 
 ```
 reddit-mine/
-├── agent.py                    # Background scheduler (APScheduler)
-├── main.py                     # Manual entry point
+├── scheduler.py                # Background scheduler (APScheduler)
+├── run.py                      # Manual entry point
+├── server.py                   # FastAPI server entry point
 │
 ├── pipelines/              # Coordinate the data flow between services
 │   ├── scout_pipeline.py       # Discovery & validation (Scout Bot)
@@ -189,6 +196,6 @@ The following secrets should be configured in your Infisical project:
 
 ## Notes & Limitations
 
-- Backend infrastructure only — no UI
+- Backend infrastructure only no UI
 - Focused exclusively on Reddit as a data source
 - LLM inference costs apply depending on Gemini usage tier
