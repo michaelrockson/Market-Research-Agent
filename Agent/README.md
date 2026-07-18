@@ -183,7 +183,7 @@ The following secrets should be configured in your Infisical project:
 - Reddit ingestion and data collection
 - Sentiment analysis pipeline
 - Gemini-based Curator Agent
-- Notion sync and email notifications
+- Notion sync (optional) and email notifications
 - Repository pattern (data access layer)
 - Dynamic secrets loading via Infisical
 - Egress helpers extracted to utils/helpers.py
