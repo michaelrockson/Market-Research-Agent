@@ -1,6 +1,6 @@
-# Market-Research-Agent
+# Problem-Identification-Agent
 
-The backend is responsible for gathering Reddit discussions, analyzing the sentiments of the posts, validating the opportunities with Gemini and finally, creating structured problem briefs.
+An AI Agent responsible for gathering Reddit discussions, analyzing the sentiments of the posts, validating the opportunities with Gemini and finally, creating structured problem briefs.
 
 ## How It Works
 
@@ -28,8 +28,8 @@ The agent runs a four-stage pipeline:
 Clone the repository:
 
    ```bash
-   git clone https://github.com/michaelrockson/Reddit-Mine.git
-   cd Reddit-Mine
+   git clone https://github.com/michaelrockson/Problem-Identification-Agent.git
+   cd Problem-Identification-Agent
    ```
 
 Run the setup script:
